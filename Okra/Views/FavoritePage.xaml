@@ -7,8 +7,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Series"
-             x:Class="Okra.Views.FavoritePage">   
+             x:Class="Okra.Views.FavoritePage">
     <ListView x:Name="SerieListView"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             HasUnevenRows="True"

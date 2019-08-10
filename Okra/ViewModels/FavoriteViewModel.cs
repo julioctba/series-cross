@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Okra.Models;
 using Okra.Services;
 using Okra.Views;
+using Prism;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
@@ -15,9 +18,11 @@ namespace Okra.ViewModels
 {
     public sealed class FavoriteViewModel : BaseViewModel
     {
-        private readonly ISerieServiceDB serieServiceDB;
+        private readonly ISerieServiceDB serieServiceDB;        
 
         public ICommand ItemClickCommand { get; }
+
+
 
         public FavoriteViewModel(
             INavigationService navigationService
@@ -25,7 +30,7 @@ namespace Okra.ViewModels
             : base(navigationService)
         {
             this.serieServiceDB = serieServiceDB;
-       
+    
 
             ItemClickCommand = new Command<Serie>(async (item)
                => await ItemClickCommandExecute(item));
@@ -35,10 +40,9 @@ namespace Okra.ViewModels
         public ObservableCollection<Serie> Series
         {
             get => series;
-            set => SetProperty(ref series, value);
+            set => SetProperty(ref series, value); 
         }
 
-        
 
         private async Task AddExecute()
         {
@@ -50,16 +54,52 @@ namespace Okra.ViewModels
 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
-            await ExecuteBusyAction(async () =>
-            {
-                await LoadSerie();                
-            });
+            base.OnNavigatingTo(parameters);
+            await LoadSerie();               
         }
 
         private async Task LoadSerie()
         {
-            var collection = await serieServiceDB.All();
-            Series = new ObservableCollection<Serie>(collection);
+            await ExecuteBusyAction(async () => {
+
+                var collection = await serieServiceDB.All();
+
+                Series.Clear();
+
+                foreach (var item in collection)
+                {
+                    Series.Add(item);
+                }
+            });
+        }
+
+        private bool _isRefreshing = false;
+
+        [Obsolete]
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        [Obsolete]
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await LoadSerie();
+
+                    IsRefreshing = false;
+                });
+            }
         }
 
         async Task ItemClickCommandExecute(Serie serie)

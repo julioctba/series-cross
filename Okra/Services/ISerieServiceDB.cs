@@ -10,6 +10,11 @@ namespace Okra.Services
     {
 
         Task Add(Serie serie);
+
+        Task Delete(Serie serie);
+
+        Task<Serie> GetById(Serie serie);
+
         Task<List<Serie>> All();
     }
 }

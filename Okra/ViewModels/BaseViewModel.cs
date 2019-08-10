@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Prism;
 using Prism.Mvvm;
 using Prism.Navigation;
 
@@ -13,17 +14,15 @@ namespace Okra.ViewModels
             NavigationService = navigationService;
         }
 
-        protected BaseViewModel(string v)
-        {
-            this.v = v;
-        }
+
+   
 
         public INavigationService NavigationService { get; }
 
         private bool isBusy;
 
         private string title;
-        private string v;
+ 
 
         public string Title { get => title ; set => SetProperty(ref title, value); }
 
@@ -56,6 +55,7 @@ namespace Okra.ViewModels
             }
         }
 
+
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
 
@@ -75,5 +75,6 @@ namespace Okra.ViewModels
         {
             throw new NotImplementedException();
         }
+
     }
 }

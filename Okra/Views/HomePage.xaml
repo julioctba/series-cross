@@ -10,7 +10,7 @@
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom">
     <TabbedPage.Children>
-        <views:MainPage Title="Filmes" IconImageSource="baseline_rss_feed_black_48.png" />
+        <views:MainPage Title="Filmes" IconImageSource="baseline_rss_feed_black_48.png"  />
         <views:FavoritePage Title="Favoritos" Icon="baseline_history_black_48.png" />        
     </TabbedPage.Children>
 </TabbedPage>

@@ -16,6 +16,20 @@ namespace Okra.Views
         public DetailView()
         {            
             InitializeComponent();
+
+
+            
+           /* groupPage.ToolbarItems.Clear();           
+
+            groupPage.ToolbarItems.Add(new ToolbarItem
+            {
+                Name = "OK",
+                Icon = "icon.png",
+                Order = ToolbarItemOrder.Primary,
+                
+            });*/
+            
+
         }
 
     }

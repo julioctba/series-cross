@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="{Binding Title}"
-             x:Class="Okra.Views.DetailView">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Favoritar"
+             x:Class="Okra.Views.DetailView" x:Name="groupPage">
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Text="{Binding TextoFavorito}"
                      Command="{Binding AddCommand}" x:Name="button_favorite"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

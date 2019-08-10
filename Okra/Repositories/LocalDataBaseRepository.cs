@@ -31,8 +31,9 @@ namespace Okra.Repositories
         public List<Serie> GetAll()
             => liteCollection.FindAll().ToList();
 
-        public Serie GetById(string id)
-            => liteCollection.FindById(id);
+        public Serie GetById(Serie serie)
+            => liteCollection.FindById(serie.Id);
+  
 
         private LiteCollection<Serie> GetCollection()
         {

@@ -14,7 +14,7 @@ namespace Okra.Views
     {
         public FavoritePage()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }

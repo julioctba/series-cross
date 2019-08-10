@@ -11,6 +11,7 @@ namespace Okra.Repositories
         void Delete(Serie serie);
 
         List<Serie> GetAll();
-        Serie GetById(string id);
+
+        Serie GetById(Serie serie);
     }
 }

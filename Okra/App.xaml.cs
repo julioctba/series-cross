@@ -38,7 +38,7 @@ namespace Okra
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<HomePage>();
+            containerRegistry.RegisterForNavigation<HomePage, HomeViewModel>(nameof(HomePage));
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(nameof(MainPage));
             containerRegistry.RegisterForNavigation<FavoritePage, FavoriteViewModel>(nameof(FavoritePage));
             containerRegistry.RegisterForNavigation<DetailView, DetailViewModel>();
